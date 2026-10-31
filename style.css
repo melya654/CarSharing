@@ -224,9 +224,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .field-check { flex-direction: row; align-items: center; gap: .5rem; }
 .field-check label { font-weight: 400; }
-#form-message { min-height: 1.5rem; font-size: .9rem; font-weight: 600; }
-#form-message.error { color: #ef4444; }
-#form-message.success { color: #22c55e; }
+
 
 /* ============ Підвал ============ */
 .site-footer {
