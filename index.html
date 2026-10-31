@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="AUTOM — каршерінг та оренда автомобілів: від міських седанів до преміальних авто. Бронювання за 2 хвилини.">
   <title>AUTOM — каршерінг та оренда авто</title>
-  <script src="script.js" defer></script>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 <body>
 
@@ -143,7 +144,7 @@
           <p><strong>Графік:</strong><br>Цілодобово, без вихідних</p>
         </address>
 
-        <form class="contact-form" id="contact-form" action="#" method="post" novalidate></form>
+        <form class="contact-form" id="contact-form" action="#" method="post" novalidate>
           <div class="field">
             <label for="name">Ім'я</label>
             <input type="text" id="name" name="name" placeholder="Ваше ім'я" required>
@@ -164,7 +165,7 @@
             </select>
           </div>
 
-          <div class="field">
+                    <div class="field">
             <label for="message">Повідомлення</label>
             <textarea id="message" name="message" rows="4" placeholder="Яке авто та на які дати вам потрібне?" required></textarea>
           </div>
@@ -172,10 +173,15 @@
           <div class="field field-check">
             <input type="checkbox" id="consent" name="consent" required>
             <label for="consent">Погоджуюсь на обробку персональних даних</label>
+          </div>
+
           <div id="form-message" role="status" aria-live="polite"></div>
-         
+
           <button type="submit" class="btn btn-primary">Надіслати</button>
         </form>
+      </div>
+    </section>
+        
       </div>
     </section>
 
