@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AUTOM — каршерінг та оренда автомобілів: від міських седанів до преміальних авто. Бронювання за 2 хвилини.">
+  <title>AUTOM — каршерінг та оренда авто</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ШАПКА: логотип, навігація, перемикач теми -->
+  <header class="site-header">
+    <a class="logo" href="#home" aria-label="AUTOM — на головну">AUTO<span>M</span></a>
+
+    <nav class="main-nav" aria-label="Основна навігація">
+      <a href="#home">Головна</a>
+      <a href="#about">Про сервіс</a>
+      <a href="#services">Послуги</a>
+      <a href="#contacts">Контакти</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" id="theme-toggle" class="btn btn-ghost" aria-label="Перемкнути тему">◐ Тема</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- СЕКЦІЯ: ГОЛОВНА -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Преміальна оренда авто без зайвих клопотів</h1>
+        <p>Бронюйте автомобіль у застосунку за 2 хвилини та їдьте без залога й паперів.</p>
+        <a class="btn btn-outline" href="#contacts">Забронювати авто</a>
+      </div>
+      <img class="hero-img" src="assets/audi-rs7.webp" alt="Чорна Audi RS7 Sportback" width="666" height="247">
+    </section>
+
+    <!-- СЕКЦІЯ: ПРОПОЗИЦІЇ ДНЯ (картки авто) -->
+    <section id="fleet" class="section">
+      <h2>Пропозиції дня</h2>
+
+      <div class="cards">
+        <article class="card">
+          <img src="assets/skoda-octavia.webp" alt="Чорна Skoda Octavia" width="792" height="351" loading="lazy">
+          <div class="card-info">
+            <h3>Skoda Octavia</h3>
+            <p class="meta">Седан · 5 місць</p>
+            <p class="price">від 900 грн / доба</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="assets/mercedes-w211.webp" alt="Чорний Mercedes-Benz E-Class W211" width="795" height="343" loading="lazy">
+          <div class="card-info">
+            <h3>Mercedes-Benz E-Class W211</h3>
+            <p class="meta">Седан · АКПП · 5 місць</p>
+            <p class="price">від 1 800 грн / доба</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="assets/vw-passat-b6.webp" alt="Чорний Volkswagen Passat B6" width="782" height="353" loading="lazy">
+          <div class="card-info">
+            <h3>Volkswagen Passat B6</h3>
+            <p class="meta">Седан · 5 місць</p>
+            <p class="price">від 1 100 грн / доба</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- СЕКЦІЯ: ПРО ПРОДУКТ -->
+    <section id="about" class="section section-alt">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>Що таке AUTOM</h2>
+          <p>AUTOM — це сервіс каршерингу та оренди автомобілів. Ви обираєте авто на карті, відкриваєте його зі смартфона й платите лише за час або кілометри поїздки. Паливо, страховка й технічне обслуговування вже включені.</p>
+
+          <ol class="steps">
+            <li><strong>Оберіть авто</strong> — у застосунку або на сайті.</li>
+            <li><strong>Відкрийте телефоном</strong> — без ключів і візитів в офіс.</li>
+            <li><strong>Їдьте та повертайте</strong> — на будь-яку з наших парковок.</li>
+          </ol>
+        </div>
+
+        <aside class="promo" aria-label="Акція">
+          <h3>Перша поїздка — 30% знижки</h3>
+          <p>Зареєструйтесь і отримайте знижку на перше бронювання з промокодом <strong>M30</strong>.</p>
+        </aside>
+      </div>
+
+      <ul class="features">
+        <li><strong>24/7</strong><span>Доступ до авто цілодобово</span></li>
+        <li><strong>100+</strong><span>Авто різних класів у парку</span></li>
+        <li><strong>0 грн</strong><span>Залог для перевірених клієнтів</span></li>
+        <li><strong>КАСКО</strong><span>Страховка входить у вартість</span></li>
+      </ul>
+    </section>
+
+    <!-- СЕКЦІЯ: ПОСЛУГИ -->
+    <section id="services" class="section">
+      <h2>Наші послуги</h2>
+
+      <div class="services-grid">
+        <article class="service">
+          <h3>Погодинний каршерінг</h3>
+          <p>Короткі міські поїздки: оплата за хвилини, паливо й паркування в зоні сервісу включені.</p>
+        </article>
+        <article class="service">
+          <h3>Оренда на добу й довше</h3>
+          <p>Подорожі та відрядження: вигідні тарифи на добу, тиждень або місяць з лімітом кілометрів.</p>
+        </article>
+        <article class="service">
+          <h3>Преміум та VIP</h3>
+          <p>Авто бізнес- та преміум-класу для особливих подій, із подачею за вказаною адресою.</p>
+        </article>
+        <article class="service">
+          <h3>Авто з водієм</h3>
+          <p>Трансфери до аеропорту, зустрічі гостей і поїздки містом із професійним водієм.</p>
+        </article>
+        <article class="service">
+          <h3>Корпоративні тарифи</h3>
+          <p>Автопарк для компаній: єдиний рахунок, закриваючі документи та персональний менеджер.</p>
+        </article>
+        <article class="service">
+          <h3>Подача на адресу</h3>
+          <p>Привеземо автомобіль до дому чи офісу й заберемо після завершення оренди.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- СЕКЦІЯ: КОНТАКТИ -->
+    <section id="contacts" class="section section-alt">
+      <h2>Контакти та бронювання</h2>
+
+      <div class="contacts-wrap">
+        <address class="contact-info">
+          <p><strong>Офіс:</strong><br>м. Івано-Франківськ, вул. Княгинин, 20</p>
+          <p><strong>Телефон:</strong><br><a href="tel:+380983290076">+380 98 329 00 76</a></p>
+          <p><strong>Email:</strong><br><a href="mailto:andrij.meljnyk.roman@fclnup.if.ua">andrij.meljnyk.roman@fclnup.if.ua</a></p>
+          <p><strong>Графік:</strong><br>Цілодобово, без вихідних</p>
+        </address>
+
+        <form class="contact-form" action="#" method="post">
+          <div class="field">
+            <label for="name">Ім'я</label>
+            <input type="text" id="name" name="name" placeholder="Ваше ім'я" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="name@example.com" required>
+          </div>
+
+          <div class="field">
+            <label for="topic">Тема звернення</label>
+            <select id="topic" name="topic">
+              <option value="rent">Оренда авто</option>
+              <option value="carsharing">Каршерінг</option>
+              <option value="corporate">Корпоративні тарифи</option>
+              <option value="other">Інше</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">Повідомлення</label>
+            <textarea id="message" name="message" rows="4" placeholder="Яке авто та на які дати вам потрібне?" required></textarea>
+          </div>
+
+          <div class="field field-check">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">Погоджуюсь на обробку персональних даних</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Надіслати</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ПІДВАЛ -->
+  <footer class="site-footer">
+    <p>&copy; 2026 AUTOM. Навчальний проєкт з Web-технологій та Web-дизайну.</p>
+    <p><a href="#home">Нагору ↑</a></p>
+  </footer>
+
+  <!-- Необов'язково: тимчасовий перемикач теми (повноцінну логіку JS додамо пізніше в курсі) -->
+  <script>
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      var root = document.documentElement;
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>
