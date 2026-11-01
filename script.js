@@ -19,6 +19,13 @@ function validateEmail(value) {
   return '';
 }
 
+function validatePhone(value) {
+  const v = value.trim();
+  if (v === '') return 'Введіть телефон.';
+  if (!/^\+380\d{9}$/.test(v)) return 'Телефон має бути у форматі +380XXXXXXXXX.';
+  return '';
+}
+
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -30,11 +37,11 @@ form.addEventListener('submit', async (event) => {
   if (name === '') return showMessage('Введіть ім’я.', 'error');
   const emailError = validateEmail(email);
   if (emailError) return showMessage(emailError, 'error');
-  if (text === '') return showMessage('Напишіть повідомлення.', 'error');
-  if (!consent) return showMessage('Потрібна згода на обробку даних.', 'error');
+  const phoneError = validatePhone(document.getElementById('phone').value);
+  if (phoneError) return showMessage(phoneError, 'error');
 
   // 5. Об'єкт з даними форми
-  const data = { name, email: email.trim(), message: text };
+    const data = { name, email: email.trim(), phone: document.getElementById('phone').value.trim(), message: text };
 
   // 6. Стан завантаження
   const submitBtn = form.querySelector('button[type="submit"]');
