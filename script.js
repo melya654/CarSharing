@@ -11,9 +11,8 @@ const emailInput = document.getElementById('email');
 
 function showMessage(text, type) {
   formMessage.textContent = text;
-  formMessage.className = type; // "error" або "success"
+  formMessage.className = type;
 }
-
 function validateEmail(value) {
   if (value.trim() === '') return 'Введіть email.';
   if (!value.includes('@')) return 'Email має містити «@».';
@@ -46,3 +45,37 @@ emailInput.addEventListener('input', () => {
   if (error) showMessage(error, 'error');
   else showMessage('Email виглядає коректно.', 'success');
 });
+
+
+// ===== Практичне 14: базові скрипти та DOM =====
+
+// 2. Змінні (let/const): масив послуг
+const services = [
+  'Погодинний каршерінг',
+  'Оренда на добу й довше',
+  'Преміум та VIP',
+  'Авто з водієм',
+  'Корпоративні тарифи',
+  'Подача на адресу'
+];
+let servicesCount = services.length;
+
+// 3. Вивід у консоль
+console.log('Послуги:', services);
+console.log('Кількість послуг:', servicesCount);
+
+// 4. Вибір елемента DOM
+const mainTitle = document.querySelector('h1');
+console.log('Заголовок h1:', mainTitle.textContent);
+
+// 5. Зміна тексту: поточний рік у футері (додаткове завдання)
+const yearEl = document.querySelector('#year');
+yearEl.textContent = new Date().getFullYear();
+
+// 6. Вибір кількох елементів: картки авто
+const cards = document.querySelectorAll('.card');
+console.log('Кількість карток авто:', cards.length);
+
+// 7. Додати CSS-клас: підсвітити активний пункт меню
+const activeLink = document.querySelector('.main-nav a[href="#home"]');
+activeLink.classList.add('active');

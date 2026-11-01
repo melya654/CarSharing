@@ -103,6 +103,7 @@ img { max-width: 100%; height: auto; display: block; }
 .main-nav { display: flex; flex-direction: column; align-items: center; gap: .5rem; }
 .main-nav a { color: var(--hero-text); font-size: .95rem; }
 .main-nav a:hover { color: var(--primary-color); }
+.main-nav a.active { color: var(--primary-color); font-weight: 600; }
 
 .header-actions { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; justify-content: center; }
 
@@ -180,21 +181,8 @@ img { max-width: 100%; height: auto; display: block; }
 .features strong { font-size: 1.5rem; color: var(--primary-color); }
 .features span { color: var(--muted-color); font-size: .9rem; }
 
-/* ============ Заняття 7: Grid — послуги ============ */
-.services-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-.service {
-  padding: 1.5rem;
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  transition: border-color .2s;
-}
-.service:hover { border-color: var(--primary-color); }
-.service p { color: var(--muted-color); margin: 0; }
+
+
 
 /* ============ Контакти та форма ============ */
 .contacts-wrap { display: grid; grid-template-columns: 1fr; gap: 2rem; }
@@ -257,7 +245,6 @@ img { max-width: 100%; height: auto; display: block; }
 
   .about-grid { grid-template-columns: 2fr 1fr; }
   .features { grid-template-columns: repeat(4, 1fr); }
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
   .contacts-wrap { grid-template-columns: 1fr 1.5fr; }
 
   .site-footer { flex-direction: row; justify-content: space-between; padding: 1.5rem 2rem; }
@@ -270,5 +257,4 @@ img { max-width: 100%; height: auto; display: block; }
     padding-left: max(3rem, calc((100% - 1140px) / 2));
     padding-right: max(3rem, calc((100% - 1140px) / 2));
   }
-  .services-grid { grid-template-columns: repeat(3, 1fr); }
 }

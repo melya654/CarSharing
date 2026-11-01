@@ -1,0 +1,16 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme inline {
+  --color-brand: var(--primary-color);
+  --color-brand-hover: var(--primary-hover);
+  --color-card: var(--card-bg);
+  --color-line: var(--border-color);
+  --color-muted: var(--muted-color);
+}
+@import "tailwindcss/utilities.css" layer(utilities);
+
+.btn-main {
+  @apply cursor-pointer rounded-lg bg-brand px-6 py-3 font-semibold text-white hover:bg-brand-hover;
+}
