@@ -1,9 +1,4 @@
-export default function Header() {
-  const toggleTheme = () => {
-    const root = document.documentElement;
-    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-  };
-
+export default function Header({ theme, onToggleTheme }) {
   return (
     <header className="site-header">
       <a className="logo" href="#home" aria-label="AUTOM — на головну">AUTO<span>M</span></a>
@@ -12,7 +7,9 @@ export default function Header() {
         <a href="#fleet">Пропозиції</a>
       </nav>
       <div className="header-actions">
-        <button type="button" className="btn btn-ghost" onClick={toggleTheme}>◐ Тема</button>
+        <button type="button" className="btn btn-ghost" onClick={onToggleTheme}>
+          ◐ {theme === 'dark' ? 'Світла' : 'Темна'}
+        </button>
       </div>
     </header>
   );

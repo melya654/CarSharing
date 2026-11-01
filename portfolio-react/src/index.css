@@ -288,3 +288,7 @@ button:disabled { opacity: .6; cursor: not-allowed; }
     padding-right: max(3rem, calc((100% - 1140px) / 2));
   }
 }
+.filters { display: flex; gap: 12px; margin-bottom: 24px; }
+.filters .active { border-color: var(--primary-color); color: var(--primary-color); }
+.card-info .btn { margin-top: 12px; }
+#greeting input { max-width: 360px; margin-bottom: 12px; }
