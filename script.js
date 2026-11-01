@@ -36,7 +36,7 @@ form.addEventListener('submit', async (event) => {
   // 5. Об'єкт з даними форми
   const data = { name, email: email.trim(), message: text };
 
-  // 8. Стан завантаження
+  // 6. Стан завантаження
   const submitBtn = form.querySelector('button[type="submit"]');
   const btnText = submitBtn.textContent;
   submitBtn.disabled = true;
@@ -44,14 +44,14 @@ form.addEventListener('submit', async (event) => {
   showMessage('', '');
 
   try {
-    // 6. POST-запит із JSON
+    // 7. POST-запит із JSON
     const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
 
-    // 7. Перевірка статусу
+    // 8. Перевірка статусу
     if (!response.ok) throw new Error('HTTP ' + response.status);
 
     const result = await response.json();
@@ -112,18 +112,26 @@ activeLink.classList.add('active');
 // ===== Практичне 18: Fetch/AJAX =====
 const reviewsList = document.querySelector('#reviews-list');
 
+const reviewTexts = [
+  'Орендував Skoda Octavia на вихідні. Авто чисте, видача швидка, без прихованих платежів.',
+  'Зручне бронювання через сайт, менеджер відповів за кілька хвилин. Рекомендую.',
+  'Брав Passat для поїздки в Карпати. Авто в чудовому стані, дякую за сервіс!'
+];
+
 async function loadReviews() {
   try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=3');
+    const response = await fetch('https://jsonplaceholder.typicode.com/users?_limit=3');
     if (!response.ok) throw new Error('HTTP ' + response.status);
-    const posts = await response.json();
+    const users = await response.json();
 
     reviewsList.innerHTML = '';
-    for (const post of posts) {
+    users.forEach((user, i) => {
       const li = document.createElement('li');
-      li.textContent = post.title;
+      li.innerHTML = '<strong></strong><p></p>';
+      li.querySelector('strong').textContent = user.name;
+      li.querySelector('p').textContent = reviewTexts[i];
       reviewsList.append(li);
-    }
+    });
   } catch (error) {
     reviewsList.innerHTML = '<li>Не вдалося завантажити відгуки. Спробуйте пізніше.</li>';
     console.error(error);
