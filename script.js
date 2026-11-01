@@ -14,9 +14,11 @@ function showMessage(text, type) {
   formMessage.className = type;
 }
 function validateEmail(value) {
-  if (value.trim() === '') return 'Введіть email.';
-  if (!value.includes('@')) return 'Email має містити «@».';
-  return '';
+  return value.trim() === ''
+    ? 'Введіть email.'
+    : value.includes('@')
+      ? ''
+      : 'Email має містити «@».';
 }
 
 function validatePhone(value) {
