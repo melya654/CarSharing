@@ -1,0 +1,27 @@
+{
+  "name": "carsharing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+    "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./src/input.css -o ./dist/tailwind.css",
+    "watch": "tailwindcss -i ./src/input.css -o ./dist/tailwind.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melya654/CarSharing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/melya654/CarSharing/issues"
+  },
+  "homepage": "https://github.com/melya654/CarSharing#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}
