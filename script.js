@@ -54,7 +54,7 @@ form.addEventListener('submit', async (event) => {
 
   try {
     // 7. POST-запит із JSON
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+   const response = await fetch('http://localhost:3000/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -65,7 +65,7 @@ form.addEventListener('submit', async (event) => {
 
     const result = await response.json();
     console.log('Відповідь сервера:', result);
-    showMessage('Дякуємо! Заявку надіслано (id: ' + result.id + ').', 'success');
+   showMessage('Дякуємо! Заявку надіслано.', 'success');
     form.reset();
   } catch (error) {
     showMessage('Не вдалося надіслати заявку. Перевірте з’єднання й спробуйте ще раз.', 'error');
@@ -148,3 +148,40 @@ async function loadReviews() {
 }
 
 loadReviews();
+
+
+// ===== Практичне 22: дані з власного API =====
+const carsList = document.querySelector('#cars-list');
+
+async function loadCars() {
+  try {
+    const response = await fetch('http://localhost:3000/api/projects');
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    const cars = await response.json();
+
+    carsList.innerHTML = '';
+    cars.forEach(car => {
+      const article = document.createElement('article');
+      article.className = 'card';
+      article.innerHTML = `
+        <img loading="lazy">
+        <div class="card-info">
+          <h3></h3>
+          <p class="meta"></p>
+          <p class="price"></p>
+        </div>`;
+      const img = article.querySelector('img');
+      img.src = car.image;
+      img.alt = car.alt;
+      article.querySelector('h3').textContent = car.title;
+      article.querySelector('.meta').textContent = car.text;
+      article.querySelector('.price').textContent = car.price;
+      carsList.append(article);
+    });
+  } catch (error) {
+    carsList.innerHTML = '<p>Не вдалося завантажити авто. Запустіть сервер.</p>';
+    console.error(error);
+  }
+}
+
+loadCars();
