@@ -1,7 +1,7 @@
 /* ============ Заняття 5, 9: CSS custom properties та теми ============ */
 :root {
   /* Світла тема (стилі Figma AUTOM/Light/...) */
-  --primary-color: #c2410c;   /* AUTOM/Light/Primary */
+  --primary-color: #b93c0a;   /* AUTOM/Light/Primary */
   --primary-hover: #9a3412;   /* AUTOM/Light/Hover */
   --text-color: #1c1917;      /* AUTOM/Light/Text */
   --muted-color: #57534e;     /* AUTOM/Light/Muted */
@@ -98,6 +98,9 @@ img { max-width: 100%; height: auto; display: block; }
 .btn:hover, .btn:focus-visible { text-decoration: none; }
 .btn-primary { background-color: var(--primary-color); color: #fff; border: none; padding: .8rem 1.4rem; }
 .btn-primary:hover, .btn-primary:focus-visible { background-color: var(--primary-hover); color: #fff; }
+[data-theme="dark"] .btn-primary,
+[data-theme="dark"] .btn-primary:hover,
+[data-theme="dark"] .btn-primary:focus-visible { color: #050505; }
 .btn-outline { border-color: currentColor; }
 .btn-outline:hover, .btn-outline:focus-visible { background-color: var(--text-color); color: var(--bg-color); }
 .btn-ghost { border-color: var(--border-color); }
@@ -289,3 +292,19 @@ button:disabled { opacity: .6; cursor: not-allowed; }
     padding-right: max(3rem, calc((100% - 1140px) / 2));
   }
 }
+/* ============ Практичне 24: доступність ============ */
+a:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: .6rem 1rem;
+  background: #fff;
+  color: #000;
+  border-radius: var(--radius);
+}
+.skip-link:focus { top: 1rem; }
