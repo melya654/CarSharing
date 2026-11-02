@@ -151,6 +151,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ============ Заняття 6: картки авто (flex) ============ */
 .cards { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+#cars-list { min-height: 420px; }
 .card {
   flex: 1 1 260px;
   display: flex;

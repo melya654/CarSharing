@@ -109,9 +109,7 @@ console.log('Заголовок h1:', mainTitle.textContent);
 const yearEl = document.querySelector('#year');
 yearEl.textContent = new Date().getFullYear();
 
-// 6. Вибір кількох елементів: картки авто
-const cards = document.querySelectorAll('.card');
-console.log('Кількість карток авто:', cards.length);
+
 
 // 7. Додати CSS-клас: підсвітити активний пункт меню
 const activeLink = document.querySelector('.main-nav a[href="#home"]');
@@ -173,6 +171,8 @@ async function loadCars() {
       const img = article.querySelector('img');
       img.src = car.image;
       img.alt = car.alt;
+      img.width = 480;
+      img.height = 215;
       article.querySelector('h3').textContent = car.title;
       article.querySelector('.meta').textContent = car.text;
       article.querySelector('.price').textContent = car.price;
