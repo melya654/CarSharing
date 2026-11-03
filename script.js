@@ -1,7 +1,15 @@
 // Перемикач теми
 const root = document.documentElement;
+
+// Відновити збережену тему (якщо localStorage доступний)
+try {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light' || savedTheme === 'dark') root.dataset.theme = savedTheme;
+} catch (e) { /* localStorage може бути заблокований */ }
+
 document.getElementById('theme-toggle').addEventListener('click', () => {
   root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  try { localStorage.setItem('theme', root.dataset.theme); } catch (e) { /* ігноруємо */ }
 });
 
 // Форма
@@ -13,12 +21,13 @@ function showMessage(text, type) {
   formMessage.textContent = text;
   formMessage.className = type;
 }
+
 function validateEmail(value) {
-  return value.trim() === ''
-    ? 'Введіть email.'
-    : value.includes('@')
-      ? ''
-      : 'Email має містити «@».';
+  const v = value.trim();
+  if (v === '') return 'Введіть email.';
+  if (!v.includes('@')) return 'Email має містити «@».';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return 'Введіть коректний email, наприклад name@example.com.';
+  return '';
 }
 
 function validatePhone(value) {
@@ -41,9 +50,11 @@ form.addEventListener('submit', async (event) => {
   if (emailError) return showMessage(emailError, 'error');
   const phoneError = validatePhone(document.getElementById('phone').value);
   if (phoneError) return showMessage(phoneError, 'error');
+  if (text === '') return showMessage('Введіть повідомлення.', 'error');
+  if (!consent) return showMessage('Потрібна згода на обробку персональних даних.', 'error');
 
   // 5. Об'єкт з даними форми
-    const data = { name, email: email.trim(), phone: document.getElementById('phone').value.trim(), message: text };
+  const data = { name, email: email.trim(), phone: document.getElementById('phone').value.trim(), message: text };
 
   // 6. Стан завантаження
   const submitBtn = form.querySelector('button[type="submit"]');
@@ -54,7 +65,7 @@ form.addEventListener('submit', async (event) => {
 
   try {
     // 7. POST-запит із JSON
-   const response = await fetch('http://localhost:3000/api/contact', {
+    const response = await fetch('http://localhost:3000/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -65,7 +76,7 @@ form.addEventListener('submit', async (event) => {
 
     const result = await response.json();
     console.log('Відповідь сервера:', result);
-   showMessage('Дякуємо! Заявку надіслано.', 'success');
+    showMessage('Дякуємо! Заявку надіслано.', 'success');
     form.reset();
   } catch (error) {
     showMessage('Не вдалося надіслати заявку. Перевірте з’єднання й спробуйте ще раз.', 'error');
@@ -97,23 +108,26 @@ const services = [
 ];
 let servicesCount = services.length;
 
-// 3. Вивід у консоль
-console.log('Послуги:', services);
-console.log('Кількість послуг:', servicesCount);
-
-// 4. Вибір елемента DOM
-const mainTitle = document.querySelector('h1');
-console.log('Заголовок h1:', mainTitle.textContent);
+// 3–4. Налагоджувальний вивід у консоль прибрано (виправлення за результатами тестування)
 
 // 5. Зміна тексту: поточний рік у футері (додаткове завдання)
 const yearEl = document.querySelector('#year');
 yearEl.textContent = new Date().getFullYear();
 
-
-
-// 7. Додати CSS-клас: підсвітити активний пункт меню
-const activeLink = document.querySelector('.main-nav a[href="#home"]');
-activeLink.classList.add('active');
+// 7. Додати CSS-клас: підсвітити активний пункт меню (оновлюється під час прокрутки)
+const navLinks = document.querySelectorAll('.main-nav a');
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    navLinks.forEach((a) => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+    });
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+navLinks.forEach((a) => {
+  const section = document.querySelector(a.getAttribute('href'));
+  if (section) navObserver.observe(section);
+});
 
 
 // ===== Практичне 18: Fetch/AJAX =====

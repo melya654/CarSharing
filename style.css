@@ -218,6 +218,7 @@ img { max-width: 100%; height: auto; display: block; }
 .field label { font-size: .9rem; font-weight: 600; }
 .field input[type="text"],
 .field input[type="email"],
+.field input[type="tel"],
 .field select,
 .field textarea {
   width: 100%;
@@ -273,7 +274,7 @@ button:disabled { opacity: .6; cursor: not-allowed; }
 
   .hero { flex-direction: row; align-items: center; padding: 4rem 2rem; }
   .hero-content { flex: 1; }
-  .hero-img { flex: 1.2; }
+    .hero-img { flex: 1.2; min-width: 0; }
 
   .section { padding: 4rem 2rem; }
 
