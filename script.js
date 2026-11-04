@@ -1,3 +1,8 @@
+// ===== Практичне 26: адреси API для локальної роботи та для деплою =====
+// Локально: власний Node.js-сервер. У мережі (Vercel): статичний projects.json і тестовий API.
+const isLocal = ['localhost', '127.0.0.1'].includes(location.hostname);
+const CARS_URL = isLocal ? 'http://localhost:3000/api/projects' : 'projects.json';
+const CONTACT_URL = isLocal ? 'http://localhost:3000/api/contact' : 'https://jsonplaceholder.typicode.com/posts';
 // Перемикач теми
 const root = document.documentElement;
 
@@ -65,7 +70,7 @@ form.addEventListener('submit', async (event) => {
 
   try {
     // 7. POST-запит із JSON
-    const response = await fetch('http://localhost:3000/api/contact', {
+       const response = await fetch(CONTACT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -167,8 +172,16 @@ const carsList = document.querySelector('#cars-list');
 
 async function loadCars() {
   try {
-    const response = await fetch('http://localhost:3000/api/projects');
-    if (!response.ok) throw new Error('HTTP ' + response.status);
+    let response;
+    try {
+      response = await fetch(CARS_URL);
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+    } catch (apiError) {
+      // Запасний варіант: статичний файл, якщо сервер недоступний
+      console.warn('API недоступний, використовуємо projects.json', apiError);
+      response = await fetch('projects.json');
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+    }
     const cars = await response.json();
 
     carsList.innerHTML = '';
@@ -199,3 +212,12 @@ async function loadCars() {
 }
 
 loadCars();
+
+// ===== Практичне 26: реєстрація service worker =====
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then((reg) => console.log('Service worker зареєстровано, scope:', reg.scope))
+      .catch((err) => console.error('Помилка реєстрації service worker:', err));
+  });
+}
