@@ -1,34 +1,10 @@
 [
-  {
-    "id": 1,
-    "title": "Skoda Octavia",
-    "text": "Седан · 5 місць",
-    "price": "від 900 грн / доба",
-    "image": "images/skoda-octavia.webp",
-    "alt": "Чорна Skoda Octavia"
-  },
-  {
-    "id": 2,
-    "title": "Mercedes-Benz E-Class W211",
-    "text": "Седан · АКПП · 5 місць",
-    "price": "від 1 800 грн / доба",
-    "image": "images/mercedes-w211.webp",
-    "alt": "Чорний Mercedes-Benz E-Class W211"
-  },
-  {
-    "id": 3,
-    "title": "Volkswagen Passat B6",
-    "text": "Седан · 5 місць",
-    "price": "від 1 100 грн / доба",
-    "image": "images/vw-passat-b6.webp",
-    "alt": "Чорний Volkswagen Passat B6"
-  },
-  {
-    "id": 4,
-    "title": "Audi RS7",
-    "text": "Ліфтбек · 5 місць",
-    "price": "від 3 500 грн / доба",
-    "image": "images/audi-rs7.webp",
-    "alt": "Audi RS7"
-  }
+  { "id": 1, "title": "Skoda Octavia", "brand": "Skoda", "year": 2018, "body": "Седан", "fuel": "Бензин", "transmission": "Механіка", "seats": 5, "power": 150, "pricePerDay": 900, "available": 3, "image": "images/skoda-octavia.webp", "alt": "Чорна Skoda Octavia" },
+  { "id": 2, "title": "Mercedes-Benz E-Class W211", "brand": "Mercedes-Benz", "year": 2008, "body": "Седан", "fuel": "Дизель", "transmission": "Автомат", "seats": 5, "power": 177, "pricePerDay": 1800, "available": 1, "image": "images/mercedes-w211.webp", "alt": "Чорний Mercedes-Benz E-Class W211" },
+  { "id": 3, "title": "Volkswagen Passat B6", "brand": "Volkswagen", "year": 2009, "body": "Седан", "fuel": "Дизель", "transmission": "Механіка", "seats": 5, "power": 140, "pricePerDay": 1100, "available": 2, "image": "images/vw-passat-b6.webp", "alt": "Чорний Volkswagen Passat B6" },
+  { "id": 4, "title": "Audi RS7", "brand": "Audi", "year": 2016, "body": "Ліфтбек", "fuel": "Бензин", "transmission": "Автомат", "seats": 5, "power": 560, "pricePerDay": 3500, "available": 1, "image": "images/audi-rs7.webp", "alt": "Audi RS7" },
+  { "id": 5, "title": "Toyota RAV4", "brand": "Toyota", "year": 2021, "body": "Кросовер", "fuel": "Гібрид", "transmission": "Автомат", "seats": 5, "power": 222, "pricePerDay": 2200, "available": 2, "image": "images/toyota-rav4.webp", "alt": "Toyota RAV4 гібрид" },
+  { "id": 6, "title": "Tesla Model 3", "brand": "Tesla", "year": 2021, "body": "Седан", "fuel": "Електро", "transmission": "Автомат", "seats": 5, "power": 283, "pricePerDay": 2600, "available": 2, "image": "images/tesla-model3.webp", "alt": "Tesla Model 3" },
+  { "id": 7, "title": "Volkswagen Caddy", "brand": "Volkswagen", "year": 2019, "body": "Мінівен", "fuel": "Дизель", "transmission": "Механіка", "seats": 7, "power": 102, "pricePerDay": 1300, "available": 0, "image": "images/vw-caddy.webp", "alt": "Volkswagen Caddy" },
+  { "id": 8, "title": "Skoda Octavia Combi", "brand": "Skoda", "year": 2020, "body": "Універсал", "fuel": "Дизель", "transmission": "Автомат", "seats": 5, "power": 150, "pricePerDay": 1250, "available": 4, "image": "images/skoda-octavia-combi.webp", "alt": "Skoda Octavia Combi" }
 ]

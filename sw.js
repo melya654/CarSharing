@@ -1,6 +1,6 @@
 // Service worker для AUTOM
 // При зміні файлів збільшуйте версію, щоб старий кеш видалився
-const CACHE_NAME = 'autom-v1';
+const CACHE_NAME = 'autom-v2';
 const ASSETS = [
   './',
   'index.html',
@@ -8,6 +8,7 @@ const ASSETS = [
   'dist/tailwind.css',
   'script.js',
   'projects.json',
+  'reviews.json',
   'manifest.json',
   'images/logo.svg',
   'images/icon-192.png',

@@ -12,8 +12,11 @@
   <meta name="theme-color" content="#0b0b0c">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="images/icon-192.png">
-  <title>AUTOM — каршерінг та оренда авто | Івано-Франківськ</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    <title>AUTOM — каршерінг та оренда авто в Івано-Франківську</title>
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="dist/tailwind.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
@@ -28,8 +31,10 @@
 
     <nav class="main-nav" aria-label="Основна навігація">
       <a href="#home">Головна</a>
-      <a href="#about">Про сервіс</a>
+      <a href="#fleet">Автопарк</a>
+      <a href="#booking">Бронювання</a>
       <a href="#services">Послуги</a>
+      <a href="#reviews">Відгуки</a>
       <a href="#contacts">Контакти</a>
     </nav>
 
@@ -45,17 +50,121 @@
       <div class="hero-content">
         <h1>Преміальна оренда авто без зайвих клопотів</h1>
         <p>Бронюйте автомобіль у застосунку за 2 хвилини та їдьте без залога й паперів.</p>
-        <a class="btn btn-outline" href="#contacts">Забронювати авто</a>
+        <a class="btn btn-outline" href="#booking">Забронювати авто</a>
       </div>
       <img class="hero-img" src="images/audi-rs7.webp" alt="Чорна Audi RS7 Sportback" width="666" height="247" fetchpriority="high">
     </section>
 
-    <!-- СЕКЦІЯ: ПРОПОЗИЦІЇ ДНЯ (картки авто) -->
+        <!-- СЕКЦІЯ: АВТОПАРК (фільтри + картки + порівняння) -->
     <section id="fleet" class="section">
-      <h2>Пропозиції дня</h2>
+      <h2>Автопарк</h2>
 
-         <div class="cards" id="cars-list">
+      <form id="filters" class="filters" aria-label="Фільтри автомобілів">
+        <div class="field">
+          <label for="f-search">Пошук</label>
+          <input type="search" id="f-search" placeholder="Назва або марка">
+        </div>
+        <div class="field">
+          <label for="f-brand">Марка</label>
+          <select id="f-brand"><option value="">Усі марки</option></select>
+        </div>
+        <div class="field">
+          <label for="f-body">Клас кузова</label>
+          <select id="f-body"><option value="">Усі</option></select>
+        </div>
+        <div class="field">
+          <label for="f-trans">КПП</label>
+          <select id="f-trans"><option value="">Будь-яка</option></select>
+        </div>
+        <div class="field">
+          <label for="f-fuel">Паливо</label>
+          <select id="f-fuel"><option value="">Будь-яке</option></select>
+        </div>
+        <div class="field">
+          <label for="f-seats">Місць, від</label>
+          <select id="f-seats">
+            <option value="0">Будь-яка кількість</option>
+            <option value="4">від 4</option>
+            <option value="5">від 5</option>
+            <option value="7">від 7</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-min">Ціна за добу від, грн</label>
+          <input type="number" id="f-min" min="0" step="100" placeholder="0">
+        </div>
+        <div class="field">
+          <label for="f-max">Ціна за добу до, грн</label>
+          <input type="number" id="f-max" min="0" step="100" placeholder="5000">
+        </div>
+        <div class="field">
+          <label for="f-sort">Сортування</label>
+          <select id="f-sort">
+            <option value="default">За замовчуванням</option>
+            <option value="price-asc">Спочатку дешевші</option>
+            <option value="price-desc">Спочатку дорожчі</option>
+            <option value="year-desc">Спочатку новіші</option>
+          </select>
+        </div>
+        <div class="filters-actions">
+          <button type="reset" class="btn btn-ghost" id="f-reset">Скинути фільтри</button>
+        </div>
+      </form>
+
+      <p id="fleet-count" class="fleet-count" role="status" aria-live="polite"></p>
+
+      <div class="cards" id="cars-list">
         <p>Завантаження…</p>
+      </div>
+    </section>
+
+    <!-- СЕКЦІЯ: БРОНЮВАННЯ (калькулятор з додатковими послугами) -->
+    <section id="booking" class="section section-alt">
+      <h2>Бронювання та калькулятор вартості</h2>
+
+      <div class="booking-wrap">
+        <form id="booking-form" class="booking-form" novalidate>
+          <div class="field">
+            <label for="b-car">Автомобіль</label>
+            <select id="b-car"><option value="">Оберіть авто</option></select>
+          </div>
+          <div class="booking-dates">
+            <div class="field">
+              <label for="b-from">Дата початку</label>
+              <input type="date" id="b-from">
+            </div>
+            <div class="field">
+              <label for="b-to">Дата завершення</label>
+              <input type="date" id="b-to">
+            </div>
+          </div>
+
+          <fieldset class="addons">
+            <legend>Додаткові послуги</legend>
+            <div id="addons-list"></div>
+          </fieldset>
+
+          <div class="field">
+            <label for="b-promo">Промокод</label>
+            <input type="text" id="b-promo" placeholder="Наприклад, M30" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="b-name">Ім'я</label>
+            <input type="text" id="b-name" placeholder="Ваше ім'я">
+          </div>
+          <div class="field">
+            <label for="b-phone">Телефон</label>
+            <input type="tel" id="b-phone" placeholder="+380XXXXXXXXX">
+          </div>
+
+          <div id="booking-message" role="status" aria-live="polite"></div>
+          <button type="submit" class="btn btn-primary">Забронювати</button>
+        </form>
+
+        <aside class="summary" aria-label="Підсумок вартості" aria-live="polite">
+          <h3>Ваш розрахунок</h3>
+          <div id="summary-body"><p class="meta">Оберіть авто та дати.</p></div>
+        </aside>
       </div>
     </section>
 
@@ -123,12 +232,73 @@
 </section>
 
 
-    <!-- СЕКЦІЯ: ВІДГУКИ -->
+        <!-- СЕКЦІЯ: ВІДГУКИ -->
     <section id="reviews" class="section">
       <h2>Відгуки</h2>
-      <ul id="reviews-list" class="reviews-list">
-        <li>Завантаження…</li>
-      </ul>
+      <p id="rating-summary" class="rating-summary"></p>
+
+      <div class="reviews-wrap">
+        <ul id="reviews-list" class="reviews-list">
+          <li>Завантаження…</li>
+        </ul>
+
+        <form id="review-form" class="review-form" novalidate>
+          <h3>Залишити відгук</h3>
+          <div class="field">
+            <label for="r-name">Ім'я</label>
+            <input type="text" id="r-name" placeholder="Ваше ім'я" maxlength="40">
+          </div>
+
+          <fieldset class="stars" aria-label="Оцінка">
+            <legend>Оцінка</legend>
+            <div class="stars-row">
+              <input type="radio" name="rating" id="star5" value="5"><label for="star5" title="5 — відмінно">★</label>
+              <input type="radio" name="rating" id="star4" value="4"><label for="star4" title="4 — добре">★</label>
+              <input type="radio" name="rating" id="star3" value="3"><label for="star3" title="3 — нормально">★</label>
+              <input type="radio" name="rating" id="star2" value="2"><label for="star2" title="2 — погано">★</label>
+              <input type="radio" name="rating" id="star1" value="1"><label for="star1" title="1 — жахливо">★</label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="r-text">Ваш відгук</label>
+            <textarea id="r-text" rows="4" maxlength="400" placeholder="Як минула оренда?"></textarea>
+          </div>
+          <div id="review-message" role="status" aria-live="polite"></div>
+          <button type="submit" class="btn btn-primary">Надіслати відгук</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- СЕКЦІЯ: FAQ -->
+    <section id="faq" class="section section-alt">
+      <h2>Часті запитання</h2>
+      <div class="faq">
+        <details name="faq">
+          <summary>Які документи потрібні для оренди?</summary>
+          <p>Паспорт або ID-картка, водійське посвідчення та ІПН. Водійський стаж — від 2 років.</p>
+        </details>
+        <details name="faq">
+          <summary>Чи потрібен залог?</summary>
+          <p>Для перевірених клієнтів залог 0 грн. Для нових клієнтів сума залежить від класу авто.</p>
+        </details>
+        <details name="faq">
+          <summary>Який ліміт кілометрів?</summary>
+          <p>Стандартно 250 км на добу. Додаткова послуга «Безліміт кілометрів» знімає обмеження.</p>
+        </details>
+        <details name="faq">
+          <summary>Що робити у разі ДТП або поломки?</summary>
+          <p>Викличте поліцію за потреби та зателефонуйте нам за номером з розділу «Контакти». Допомога на дорозі працює цілодобово.</p>
+        </details>
+        <details name="faq">
+          <summary>Чи можна забрати й повернути авто в різних місцях?</summary>
+          <p>Так, скористайтеся послугою «Подача на адресу» або повертайте авто на будь-яку з наших парковок.</p>
+        </details>
+        <details name="faq">
+          <summary>Як скасувати бронювання?</summary>
+          <p>Безкоштовно — не пізніше ніж за 24 години до початку оренди, зателефонувавши нам або написавши через форму контактів.</p>
+        </details>
+      </div>
     </section>
 
 
@@ -173,11 +343,31 @@
           <div id="form-message" role="status" aria-live="polite"></div>
 
           <button type="submit" class="btn btn-primary">Надіслати</button>
-        </form>
+               </form>
+      </div>
+
+      <h3 class="map-title">Ми на карті</h3>
+      <div id="map" class="map" role="region" aria-label="Карта розташування офісу">
+        <p class="meta map-fallback">Карта недоступна без інтернету. Адреса: м. Івано-Франківськ, вул. Княгинин, 20.</p>
       </div>
     </section>
-   
+
   </main>
+
+  <!-- ПАНЕЛЬ ПОРІВНЯННЯ -->
+  <div id="compare-bar" class="compare-bar" hidden>
+    <span id="compare-names"></span>
+    <button type="button" id="compare-open" class="btn btn-primary" disabled>Порівняти (0)</button>
+    <button type="button" id="compare-clear" class="btn btn-ghost">Очистити</button>
+  </div>
+
+  <dialog id="compare-dialog" class="compare-dialog" aria-labelledby="compare-title">
+    <div class="compare-head">
+      <h3 id="compare-title">Порівняння автомобілів</h3>
+      <button type="button" id="compare-close" class="btn btn-ghost" aria-label="Закрити">✕</button>
+    </div>
+    <div class="compare-scroll" id="compare-table"></div>
+  </dialog>
 
   <!-- ПІДВАЛ -->
     <footer class="site-footer">

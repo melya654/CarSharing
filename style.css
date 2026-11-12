@@ -309,3 +309,167 @@ a:focus-visible {
   border-radius: var(--radius);
 }
 .skip-link:focus { top: 1rem; }
+
+
+
+
+
+/* ============ Навчальна практика: автопарк, фільтри, порівняння ============ */
+.main-nav { flex-wrap: wrap; justify-content: center; }
+html { scroll-padding-top: 4.5rem; }
+
+/* поля нових типів (пошук, число, дата) */
+.field input[type="search"],
+.field input[type="number"],
+.field input[type="date"] {
+  width: 100%;
+  padding: .7rem .8rem;
+  font: inherit;
+  color: var(--text-color);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+}
+.field input[type="search"]:focus-visible,
+.field input[type="number"]:focus-visible,
+.field input[type="date"]:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 2px; }
+
+/* повідомлення під формами */
+#booking-message, #review-message { min-height: 1.5rem; font-size: .9rem; font-weight: 600; }
+#booking-message.error, #review-message.error { color: #ef4444; }
+#booking-message.success, #review-message.success { color: #22c55e; }
+#booking-message:empty, #review-message:empty { display: none; }
+
+/* фільтри */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+}
+.filters-actions { display: flex; align-items: flex-end; }
+.fleet-count { color: var(--muted-color); font-size: .9rem; min-height: 1.4rem; }
+
+/* картки авто: сітка, щоб останній ряд не розтягувався */
+#cars-list { min-height: 280px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--space-4); }
+#cars-list > p { grid-column: 1 / -1; }
+.card .no-photo { object-fit: scale-down; opacity: .35; filter: none; }
+.stock { font-size: .85rem; font-weight: 600; margin: 0 0 .25rem; }
+.stock.in { color: #22c55e; }
+.stock.out { color: #ef4444; }
+.card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+.card-actions .btn { padding: .55rem 1rem; }
+.compare-check { display: inline-flex; align-items: center; gap: .4rem; font-size: .9rem; cursor: pointer; }
+.compare-check input { width: 1.1rem; height: 1.1rem; accent-color: var(--primary-color); }
+
+/* панель порівняння */
+.compare-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-top: 2px solid var(--primary-color);
+}
+.compare-bar[hidden] { display: none; }
+.compare-bar .btn { padding: .5rem 1rem; }
+
+.compare-dialog {
+  width: min(960px, 94vw);
+  max-height: 90vh;
+  padding: var(--space-4);
+  color: var(--text-color);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+}
+.compare-dialog::backdrop { background: rgba(0,0,0,.65); }
+.compare-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3); }
+.compare-head h3 { margin: 0; }
+.compare-scroll { overflow-x: auto; }
+.compare-table { border-collapse: collapse; width: 100%; min-width: 520px; }
+.compare-table th, .compare-table td { padding: .6rem .75rem; border-bottom: 1px solid var(--border-color); text-align: left; vertical-align: middle; }
+.compare-table thead th, .compare-table tr:first-child th { text-align: center; }
+.compare-table tr > th:first-child { color: var(--muted-color); font-weight: 600; white-space: nowrap; }
+.compare-table img { width: 100%; max-width: 220px; aspect-ratio: 16 / 9; object-fit: contain; }
+.compare-title { font-weight: 700; margin: .4rem 0; }
+.compare-table td.best { color: var(--primary-color); font-weight: 700; }
+
+/* бронювання та калькулятор */
+.booking-wrap { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.booking-form { display: flex; flex-direction: column; gap: 1rem; }
+.booking-dates { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.addons { border: 1px solid var(--border-color); border-radius: var(--radius); padding: var(--space-3) var(--space-4); }
+.addons legend { padding: 0 .4rem; font-weight: 600; font-size: .9rem; }
+.addon { display: flex; align-items: center; gap: .5rem; padding: .3rem 0; cursor: pointer; }
+.addon input { accent-color: var(--primary-color); width: 1.1rem; height: 1.1rem; }
+.addon-price { margin-left: auto; color: var(--muted-color); font-size: .85rem; }
+.summary {
+  align-self: start;
+  padding: var(--space-4);
+  background-color: var(--card-bg);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius);
+}
+.summary-rows { display: grid; grid-template-columns: 1fr auto; gap: .4rem 1rem; margin: 0; }
+.summary-rows dt, .summary-rows dd { margin: 0; }
+.summary-rows dd { text-align: right; white-space: nowrap; }
+.summary-rows .total { margin-top: .5rem; padding-top: .6rem; border-top: 1px solid var(--border-color); font-size: 1.2rem; font-weight: 800; color: var(--primary-color); }
+
+/* відгуки */
+.rating-summary { color: var(--primary-color); font-weight: 700; }
+.reviews-wrap { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.review-head { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: .25rem; }
+.review-stars { color: #f5b301; letter-spacing: .1em; white-space: nowrap; }
+.review-form { display: flex; flex-direction: column; gap: 1rem; align-self: start; padding: var(--space-4); background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius); }
+.review-form h3 { margin: 0; }
+.stars { border: 0; padding: 0; margin: 0; }
+.stars legend { font-size: .9rem; font-weight: 600; padding: 0; margin-bottom: .35rem; }
+.stars-row { display: inline-flex; flex-direction: row-reverse; gap: .15rem; }
+.stars-row input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.stars-row label { font-size: 2rem; line-height: 1; color: var(--border-color); cursor: pointer; transition: color .15s; }
+.stars-row label:hover,
+.stars-row label:hover ~ label,
+.stars-row input:checked ~ label { color: #f5b301; }
+.stars-row input:focus-visible + label { outline: 2px solid var(--primary-color); outline-offset: 2px; }
+
+/* FAQ */
+.faq { display: grid; gap: var(--space-3); max-width: 800px; }
+.faq details { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 0 var(--space-4); }
+.faq summary { cursor: pointer; padding: var(--space-4) 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--primary-color); font-size: 1.4rem; line-height: 1; }
+.faq details[open] summary::after { content: "−"; }
+.faq details[open] { border-color: var(--primary-color); }
+.faq details p { margin: 0 0 var(--space-4); color: var(--muted-color); }
+
+/* карта */
+.map-title { margin-top: 2rem; }
+.map { height: 360px; border: 1px solid var(--border-color); border-radius: var(--radius); background-color: var(--card-bg); z-index: 0; }
+.map-fallback { padding: var(--space-4); }
+
+@media (min-width: 768px) {
+  .filters { grid-template-columns: repeat(4, 1fr); }
+  .booking-wrap { grid-template-columns: 1.4fr 1fr; }
+  .reviews-wrap { grid-template-columns: 1.4fr 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .stars-row label { transition: none; }
+}
