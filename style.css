@@ -482,3 +482,32 @@ html { scroll-padding-top: 4.5rem; }
 .nudge { color: var(--primary-color); font-size: .85rem; font-weight: 600; margin: 0 0 .25rem; }
 .summary-tips { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px dashed var(--border-color); display: grid; gap: .35rem; }
 .summary-tips .nudge { margin: 0; }
+
+/* ============ Мобільна шапка: компактна, меню в один рядок із прокруткою ============ */
+@media (max-width: 767px) {
+  html { scroll-padding-top: 6rem; }
+  .site-header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: .35rem .75rem;
+    padding: .5rem 1rem;
+  }
+  .site-header .logo { order: 1; font-size: 1.2rem; }
+  .site-header .header-actions { order: 2; }
+  .site-header .btn { padding: .35rem .7rem; font-size: .85rem; }
+  .main-nav {
+    order: 3;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 1.1rem;
+    overflow-x: auto;
+    padding-bottom: .25rem;
+    scrollbar-width: none;
+  }
+  .main-nav::-webkit-scrollbar { display: none; }
+  .main-nav a { white-space: nowrap; font-size: .9rem; }
+}
