@@ -477,3 +477,8 @@ html { scroll-padding-top: 4.5rem; }
 
 .duration input[type="range"] { width: 100%; accent-color: var(--primary-color); cursor: pointer; }
 .duration output { color: var(--primary-color); font-weight: 700; }
+
+/* спонукальні підказки */
+.nudge { color: var(--primary-color); font-size: .85rem; font-weight: 600; margin: 0 0 .25rem; }
+.summary-tips { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px dashed var(--border-color); display: grid; gap: .35rem; }
+.summary-tips .nudge { margin: 0; }

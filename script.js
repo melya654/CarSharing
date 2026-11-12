@@ -279,6 +279,8 @@ function buildCard(car) {
   const stock = el('p', 'stock ' + (car.available > 0 ? 'in' : 'out'),
     car.available > 0 ? `Залишилось ${car.available} авто` : 'Немає в наявності');
   info.append(stock);
+  if (car.available === 1) info.append(el('p', 'nudge', '🔥 Останнє авто — встигніть забронювати!'));
+  else if (car.available === 2) info.append(el('p', 'nudge', 'Залишилось мало — авто швидко розбирають'));
   info.append(el('p', 'price', `${money(car.pricePerDay)} / доба`));
 
   const actions = el('div', 'card-actions');
@@ -331,7 +333,8 @@ function toggleCompare(id, checkbox) {
 function updateCompareBar(note) {
   compareBar.hidden = compareIds.length === 0;
   const names = compareIds.map((id) => cars.find((c) => c.id === id)?.title).filter(Boolean);
-  compareNames.textContent = note || names.join(' · ');
+  compareNames.textContent = note ||
+  (compareIds.length === 1 ? `${names[0]} — додайте ще одне авто для порівняння` : names.join(' · '));
   compareOpen.textContent = `Порівняти (${compareIds.length})`;
   compareOpen.disabled = compareIds.length < 2;
   if (note) setTimeout(() => updateCompareBar(), 2500);
@@ -524,7 +527,7 @@ function updateSummary() {
   const r = calculate();
   summaryBody.innerHTML = '';
   if (!r) {
-    summaryBody.append(el('p', 'meta', 'Оберіть авто та коректні дати.'));
+  summaryBody.append(el('p', 'meta', 'Оберіть авто та дати — ми одразу порахуємо вартість.'));
     return null;
   }
   const rows = document.createElement('dl');
@@ -539,6 +542,14 @@ function updateSummary() {
   if (r.discount) add(`Промокод ${PROMO_CODE} (−30% від оренди)`, '−' + money(r.discount));
   add('Разом', money(r.total), 'total');
   summaryBody.append(rows);
+
+  // Спонукальні підказки
+  const tips = el('div', 'summary-tips');
+  if (r.discount) tips.append(el('p', 'nudge', `Чудово! Промокод застосовано, ви економите ${money(r.discount)}.`));
+  else tips.append(el('p', 'nudge', `Для першої поїздки: промокод ${PROMO_CODE} зекономить ${money(Math.round(r.rent * PROMO_DISCOUNT))}. Введіть його вище.`));
+  if (!r.chosen.some((a) => a.id === 'kasko')) tips.append(el('p', 'nudge', 'Додайте повну страховку КАСКО — їдьте без зайвих хвилювань.'));
+  if (r.car.available === 1) tips.append(el('p', 'nudge', '🔥 Це останнє авто — забронюйте, поки його не забрали.'));
+  summaryBody.append(tips);
   return r;
 }
 
@@ -573,7 +584,7 @@ bookingForm.addEventListener('submit', async (event) => {
       })
     });
     if (!response.ok) throw new Error('HTTP ' + response.status);
-    setMsg(bookMsg, `Дякуємо, ${name}! Бронювання на суму ${money(r.total)} прийнято.`, 'success');
+    setMsg(bookMsg, `Дякуємо, ${name}! Бронювання на суму ${money(r.total)} прийнято. Не забудьте залишити відгук після поїздки!`, 'success');
     r.car.available = Math.max(0, r.car.available - 1);   // оновлюємо лічильник «залишилось N авто»
     fillBookingCars();
     bookCar.value = '';
