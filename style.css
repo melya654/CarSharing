@@ -473,3 +473,7 @@ html { scroll-padding-top: 4.5rem; }
   html { scroll-behavior: auto; }
   .stars-row label { transition: none; }
 }
+/* повзунок тривалості */
+
+.duration input[type="range"] { width: 100%; accent-color: var(--primary-color); cursor: pointer; }
+.duration output { color: var(--primary-color); font-weight: 700; }

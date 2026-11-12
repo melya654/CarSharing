@@ -420,13 +420,63 @@ function toISO(date) {
   return new Date(date - off).toISOString().slice(0, 10);
 }
 
-function initBookingDates() {
-  const today = new Date();
-  const tomorrow = new Date(today.getTime() + 86400000);
-  bookFrom.min = bookTo.min = toISO(today);
-  bookFrom.value = toISO(today);
-  bookTo.value = toISO(tomorrow);
+const bookDays = document.querySelector('#b-days');
+const bookDaysOut = document.querySelector('#b-days-out');
+
+function addDays(iso, n) {
+  const d = new Date(iso + 'T00:00:00');
+  d.setDate(d.getDate() + n);
+  return toISO(d);
 }
+
+function daysWord(n) {
+  const last = n % 10, tens = n % 100;
+  if (tens >= 11 && tens <= 14) return 'діб';
+  if (last === 1) return 'доба';
+  if (last >= 2 && last <= 4) return 'доби';
+  return 'діб';
+}
+
+// Показати тривалість на повзунку й підписі
+function syncDuration() {
+  const n = rentalDays() || 1;
+  bookDays.max = Math.max(30, n);
+  bookDays.value = n;
+  bookDaysOut.textContent = `${n} ${daysWord(n)}`;
+}
+
+function initBookingDates() {
+  const today = toISO(new Date());
+  bookFrom.min = today;
+  bookFrom.value = today;
+  bookTo.min = addDays(today, 1);
+  bookTo.value = addDays(today, 1);
+  syncDuration();
+}
+
+// Змінили початок: кінець зсувається, тривалість зберігається (мінімум 1 доба)
+bookFrom.addEventListener('change', () => {
+  if (!bookFrom.value) return;
+  const n = Number(bookDays.value) || 1;
+  bookTo.min = addDays(bookFrom.value, 1);
+  bookTo.value = addDays(bookFrom.value, n);
+  syncDuration();
+});
+
+// Змінили кінець вручну: не раніше ніж через добу після початку
+bookTo.addEventListener('change', () => {
+  if (!bookFrom.value) return;
+  if (!bookTo.value || bookTo.value <= bookFrom.value) bookTo.value = addDays(bookFrom.value, 1);
+  syncDuration();
+});
+
+// Повзунок: задає кількість діб, дата завершення рахується сама
+bookDays.addEventListener('input', () => {
+  if (!bookFrom.value) return;
+  const n = Number(bookDays.value);
+  bookTo.value = addDays(bookFrom.value, n);
+  bookDaysOut.textContent = `${n} ${daysWord(n)}`;
+});
 
 function renderAddons() {
   ADDONS.forEach((a) => {

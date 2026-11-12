@@ -128,7 +128,7 @@
             <label for="b-car">Автомобіль</label>
             <select id="b-car"><option value="">Оберіть авто</option></select>
           </div>
-          <div class="booking-dates">
+            <div class="booking-dates">
             <div class="field">
               <label for="b-from">Дата початку</label>
               <input type="date" id="b-from">
@@ -137,6 +137,11 @@
               <label for="b-to">Дата завершення</label>
               <input type="date" id="b-to">
             </div>
+          </div>
+          
+          <div class="field duration">
+            <label for="b-days">Тривалість оренди: <output id="b-days-out">1 доба</output></label>
+            <input type="range" id="b-days" min="1" max="30" value="1">
           </div>
 
           <fieldset class="addons">
