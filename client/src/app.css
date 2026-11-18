@@ -1,0 +1,121 @@
+/* ===== Стилі React-версії (доповнюють index.css з токенами Figma) ===== */
+
+.skip-link { position: absolute; left: 1rem; top: -3rem; z-index: 100; padding: .5rem 1rem;
+  background: var(--primary-color); color: #fff; border-radius: var(--radius); }
+.skip-link:focus { top: 1rem; color: #fff; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.center { text-align: center; }
+.page-title { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+
+/* ----- Шапка + бургер (mobile-first) ----- */
+.site-header { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+.header-top { display: flex; align-items: center; justify-content: space-between; flex: 1 1 auto; }
+.burger { display: inline-flex; flex-direction: column; gap: 5px; padding: 10px; background: none;
+  border: 1px solid var(--border-color); border-radius: var(--radius); cursor: pointer; margin-left: auto; }
+.burger span { width: 22px; height: 2px; background: var(--hero-text); }
+.main-nav { display: none; width: 100%; order: 3; padding: .5rem 0; }
+.main-nav.open { display: flex; }
+.main-nav a { padding: .5rem; }
+.header-actions { order: 2; margin-left: .5rem; }
+.badge { display: inline-block; min-width: 1.3rem; margin-left: .35rem; padding: 0 .35rem; border-radius: 1rem;
+  background: var(--primary-color); color: #fff; font-size: .75rem; text-align: center; }
+
+/* ----- Hero ----- */
+.hero h1 { font-size: clamp(2rem, 6vw, 3.25rem); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+/* ----- Кроки ----- */
+.steps-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: 1fr; }
+.steps-grid li { display: flex; gap: 1rem; align-items: center; padding: 1rem; background: var(--card-bg);
+  border: 1px solid var(--border-color); border-radius: var(--radius); }
+.steps-grid strong { font-size: 2rem; color: var(--primary-color); line-height: 1; }
+
+/* ----- Сітка карток: CSS Grid auto-fill ----- */
+.car-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.card h3 a { color: var(--text-color); }
+.card h3 a:hover { color: var(--primary-color); }
+.card img { height: auto; }
+.stock { font-size: .85rem; color: #16a34a; margin: .25rem 0 0; font-weight: 600; }
+[data-theme="dark"] .stock { color: #4ade80; }
+.stock-out, [data-theme="dark"] .stock-out { color: var(--muted-color); }
+.card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 1rem; }
+.compare-check { display: inline-flex; align-items: center; gap: .4rem; font-size: .9rem; cursor: pointer; }
+.compare-check input { width: 1.1rem; height: 1.1rem; accent-color: var(--primary-color); }
+.compare-check.is-disabled { opacity: .5; cursor: not-allowed; }
+
+/* ----- Фільтри ----- */
+.filters-panel { display: grid; gap: 1rem; grid-template-columns: 1fr; align-items: end; padding: 1rem;
+  margin-bottom: 1rem; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius); }
+.field input[type="search"], .field input[type="number"], .field input[type="tel"], .field input[type="date"] {
+  width: 100%; padding: .7rem .8rem; font: inherit; color: var(--text-color); background-color: var(--card-bg);
+  border: 1px solid var(--border-color); border-radius: var(--radius); }
+.field input:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 2px; }
+
+/* ----- Стани ----- */
+.state { padding: 2rem 1rem; text-align: center; color: var(--muted-color); }
+.state-error { color: #ef4444; }
+
+/* ----- Панель порівняння ----- */
+.compare-bar { position: sticky; bottom: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: .75rem;
+  align-items: center; justify-content: space-between; padding: .75rem 1rem; background: var(--bg-alt);
+  border-top: 2px solid var(--primary-color); }
+.compare-bar-actions { display: flex; gap: .5rem; }
+
+/* ----- Таблиця порівняння ----- */
+.table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+.compare-table { width: 100%; min-width: 560px; border-collapse: collapse; }
+.compare-table th, .compare-table td { padding: .75rem; border: 1px solid var(--border-color); text-align: left; vertical-align: top; }
+.compare-table thead th { background: var(--card-bg); }
+.compare-table thead img { width: 160px; height: auto; margin-bottom: .5rem; }
+.compare-table thead a { display: block; font-weight: 700; }
+.compare-table td.best { background: rgba(34, 197, 94, .15); font-weight: 700; }
+.btn-sm { padding: .25rem .5rem; margin-top: .5rem; }
+
+/* ----- Деталі авто ----- */
+.breadcrumbs { margin-bottom: 1rem; font-size: .9rem; color: var(--muted-color); }
+.details { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+.details figure { margin: 0; }
+.price-big { font-size: 1.5rem; margin-bottom: 1rem; }
+.specs { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem 1rem; margin: 0 0 1rem; }
+.specs div { padding: .5rem 0; border-bottom: 1px solid var(--border-color); }
+.specs dt { font-size: .8rem; color: var(--muted-color); }
+.specs dd { margin: 0; font-weight: 600; }
+
+/* ----- Форма ----- */
+fieldset { border: 1px solid var(--border-color); border-radius: var(--radius); padding: 1rem; display: grid; gap: 1rem; }
+legend { padding: 0 .5rem; font-weight: 700; }
+.field-error { color: #ef4444; font-size: .85rem; margin: 0; }
+[aria-invalid="true"] { border-color: #ef4444 !important; }
+.contact-info iframe { border: 0; border-radius: var(--radius); margin-top: 1rem; }
+
+/* ----- Модальне вікно ----- */
+.modal-backdrop { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 1rem;
+  background: rgba(0, 0, 0, .6); }
+.modal { width: min(480px, 100%); padding: 1.5rem; background: var(--card-bg); color: var(--text-color);
+  border: 1px solid var(--primary-color); border-radius: var(--radius); }
+.modal-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.modal-head h2 { margin: 0; font-size: 1.25rem; }
+
+/* ===== Планшет 768px ===== */
+@media (min-width: 768px) {
+  .burger { display: none; }
+  .header-top { flex: 0 0 auto; }
+  .main-nav, .main-nav.open { display: flex; width: auto; order: 2; padding: 0; }
+  .header-actions { order: 3; }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .filters-panel { grid-template-columns: repeat(3, 1fr); }
+  .field-wide { grid-column: 1 / -1; }
+  .details { grid-template-columns: 1.2fr 1fr; align-items: start; }
+}
+
+/* ===== Десктоп 1280px ===== */
+@media (min-width: 1280px) {
+  .steps-grid { grid-template-columns: repeat(4, 1fr); }
+  .filters-panel { grid-template-columns: repeat(4, 1fr); }
+  .compare-bar { padding-left: max(3rem, calc((100% - 1140px) / 2)); padding-right: max(3rem, calc((100% - 1140px) / 2)); }
+}
+
+/* Повага до налаштувань «менше анімацій» */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
