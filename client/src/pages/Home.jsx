@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import useTitle from '../utils/useTitle';
-import { CARS_URL } from '../api';
+import { CARS_URL, CARS_FALLBACK } from '../api';
 import CarList from '../components/CarList';
 import { Loader, ErrorMessage } from '../components/Loader';
 
 export default function Home({ compare }) {
   useTitle('Прокат і каршерінг авто', 'AUTOM — оренда авто погодинно та подобово в Івано-Франківську.');
-  const { data, loading, error, reload } = useFetch(CARS_URL);
+  const { data, loading, error, reload } = useFetch(CARS_URL, CARS_FALLBACK);
   const popular = (data || []).filter(c => c.available > 0).slice(0, 3);
 
   return (

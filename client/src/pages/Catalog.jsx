@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import useTitle from '../utils/useTitle';
-import { CARS_URL } from '../api';
+import { CARS_URL, CARS_FALLBACK } from '../api';
 import { emptyFilters, filterCars } from '../utils/filterCars';
 import Filters from '../components/Filters';
 import CarList from '../components/CarList';
@@ -9,7 +9,7 @@ import { Loader, ErrorMessage } from '../components/Loader';
 
 export default function Catalog({ compare }) {
   useTitle('Каталог авто', 'Каталог авто AUTOM: фільтр за кузовом, пальним, КПП і ціною, порівняння моделей.');
-  const { data, loading, error, reload } = useFetch(CARS_URL);
+  const { data, loading, error, reload } = useFetch(CARS_URL, CARS_FALLBACK);
   const [filters, setFilters] = useState(emptyFilters);
   const [search, setSearch] = useState('');
 

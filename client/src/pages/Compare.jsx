@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import useTitle from '../utils/useTitle';
-import { CARS_URL } from '../api';
+import { CARS_URL, CARS_FALLBACK } from '../api';
 import { bestValue } from '../utils/filterCars';
 import { Loader, ErrorMessage, Empty } from '../components/Loader';
 
@@ -19,7 +19,7 @@ const rows = [
 
 export default function Compare({ compare }) {
   useTitle('Порівняння авто', 'Порівняння характеристик авто AUTOM у таблиці.');
-  const { data, loading, error } = useFetch(CARS_URL);
+  const { data, loading, error } = useFetch(CARS_URL, CARS_FALLBACK);
   const cars = (data || []).filter(c => compare.ids.includes(c.id));
 
   return (

@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import useTitle from '../utils/useTitle';
-import { API_URL, CARS_URL } from '../api';
+import { API_URL, CARS_URL, CARS_FALLBACK } from '../api';
 import { Loader, ErrorMessage } from '../components/Loader';
 import NotFound from './NotFound';
 
@@ -9,7 +9,7 @@ export default function CarDetails({ compare }) {
   const { id } = useParams();
   // З API беремо одне авто, зі статичного json: весь список і шукаємо потрібне
   const url = API_URL ? `${CARS_URL}/${id}` : CARS_URL;
-  const { data, loading, error } = useFetch(url);
+  const { data, loading, error } = useFetch(url, CARS_FALLBACK);
   const car = Array.isArray(data) ? data.find(c => c.id === Number(id)) : data;
 
   useTitle(car ? car.title : 'Авто', car && `${car.title}: ${car.year}, ${car.fuel}, від ${car.pricePerDay} грн/доба.`);

@@ -3,6 +3,8 @@
 export const API_URL = import.meta.env.VITE_API_URL || '';
 
 export const CARS_URL = API_URL ? `${API_URL}/api/cars` : '/cars.json';
+// запасні дані, якщо сервер не відповідає
+export const CARS_FALLBACK = API_URL ? '/cars.json' : undefined;
 
 export async function sendContact(data) {
   // Без сервера імітуємо успішну відправку, щоб форма працювала на статичному хостингу

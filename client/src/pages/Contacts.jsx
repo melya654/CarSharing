@@ -1,13 +1,13 @@
 import { useSearchParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import useTitle from '../utils/useTitle';
-import { CARS_URL } from '../api';
+import { CARS_URL, CARS_FALLBACK } from '../api';
 import ContactForm from '../components/ContactForm';
 
 export default function Contacts() {
   useTitle('Бронювання та контакти', 'Онлайн-бронювання авто AUTOM та контакти офісу в Івано-Франківську.');
   const [params] = useSearchParams();
-  const { data } = useFetch(CARS_URL);
+  const { data } = useFetch(CARS_URL, CARS_FALLBACK);
 
   return (
     <section className="section">
