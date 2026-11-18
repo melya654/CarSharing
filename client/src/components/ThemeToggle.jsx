@@ -15,10 +15,10 @@ export default function ThemeToggle() {
     <button
       type="button"
       className="btn btn-ghost"
-      aria-label={`Увімкнути ${next === 'light' ? 'світлу' : 'темну'} тему`}
+      title="Перемкнути тему"
       onClick={() => setTheme(next)}
     >
-      ◐ {next === 'light' ? 'Світла' : 'Темна'}
+      <span aria-hidden="true">◐ </span>{next === 'light' ? 'Світла' : 'Темна'} тема
     </button>
   );
 }

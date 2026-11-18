@@ -32,6 +32,7 @@ export default function Catalog({ compare }) {
       {data && (
         <>
           <Filters cars={data} filters={filters} onChange={setFilters} onReset={() => setFilters(emptyFilters)} />
+          <h2 className="sr-only">Результати пошуку</h2>
           <p className="meta" aria-live="polite">Знайдено авто: {visible.length}</p>
           <CarList cars={visible} compare={compare} />
         </>

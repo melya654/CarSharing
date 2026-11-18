@@ -120,3 +120,8 @@ legend { padding: 0 .5rem; font-weight: 700; }
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
 .more-link { margin-top: 1.5rem; }
+
+/* Lighthouse: контраст білого тексту на помаранчевій кнопці в темній темі був 2.6:1, тому текст темний */
+[data-theme="dark"] .btn-primary, [data-theme="dark"] .btn-primary:hover { color: #0b0b0c; }
+/* щоб футер не стрибав, поки вантажаться дані (CLS) */
+main { min-height: 100vh; }
