@@ -1,0 +1,11 @@
+# Деплой Express-API на Render (New > Blueprint > вибрати репозиторій)
+services:
+  - type: web
+    name: autom-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: CORS_ORIGIN
+        value: https://carsharing-5n999e2dy-melya.vercel.app
