@@ -40,7 +40,7 @@ export default function Home({ compare }) {
         {loading && <Loader />}
         {error && <ErrorMessage text={error} onRetry={reload} />}
         {data && <CarList cars={popular} compare={compare} />}
-        <p className="center"><Link className="btn btn-ghost" to="/cars">Увесь автопарк →</Link></p>
+        <p className="center more-link"><Link className="btn btn-ghost" to="/cars">Увесь автопарк →</Link></p>
       </section>
     </>
   );

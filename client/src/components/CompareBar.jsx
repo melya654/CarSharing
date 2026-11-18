@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { MAX_COMPARE } from '../hooks/useCompare';
 
 // Плаваюча панель внизу екрана, коли вибрано авто для порівняння
 export default function CompareBar({ count, onClear }) {
-  if (count === 0) return null;
+  const { pathname } = useLocation();
+  // На самій сторінці порівняння панель не потрібна
+  if (count === 0 || pathname === '/compare') return null;
   return (
     <aside className="compare-bar" aria-label="Порівняння">
       <span>
