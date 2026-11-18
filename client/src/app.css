@@ -125,3 +125,4 @@ legend { padding: 0 .5rem; font-weight: 700; }
 [data-theme="dark"] .btn-primary, [data-theme="dark"] .btn-primary:hover { color: #0b0b0c; }
 /* щоб футер не стрибав, поки вантажаться дані (CLS) */
 main { min-height: 100vh; }
+.contact-info address { font-style: normal; } .contact-info iframe { width: 100%; }
