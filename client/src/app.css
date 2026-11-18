@@ -126,3 +126,8 @@ legend { padding: 0 .5rem; font-weight: 700; }
 /* щоб футер не стрибав, поки вантажаться дані (CLS) */
 main { min-height: 100vh; }
 .contact-info address { font-style: normal; } .contact-info iframe { width: 100%; }
+/* на планшеті шапка не вміщалась в один рядок */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hide-tablet { display: none; }
+  .main-nav { gap: 1rem; }
+}

@@ -18,7 +18,7 @@ export default function ThemeToggle() {
       title="Перемкнути тему"
       onClick={() => setTheme(next)}
     >
-      <span aria-hidden="true">◐ </span>{next === 'light' ? 'Світла' : 'Темна'} тема
+      <span aria-hidden="true">◐ </span>{next === 'light' ? 'Світла' : 'Темна'}<span className="hide-tablet"> тема</span>
     </button>
   );
 }
