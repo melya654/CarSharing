@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://autom-carsharing.vercel.app/sitemap.xml
+Sitemap: https://carsharing-green.vercel.app/sitemap.xml

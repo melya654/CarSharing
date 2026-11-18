@@ -8,4 +8,4 @@ services:
     startCommand: npm start
     envVars:
       - key: CORS_ORIGIN
-        value: https://carsharing-5n999e2dy-melya.vercel.app
+        value: https://carsharing-green.vercel.app

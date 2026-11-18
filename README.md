@@ -5,7 +5,7 @@
 
 ## Посилання
 
-- Сайт: https://carsharing-5n999e2dy-melya.vercel.app/
+- Сайт: https://carsharing-green.vercel.app/
 - Репозиторій: https://github.com/melya654/CarSharing
 - Figma (практика): https://www.figma.com/design/Ly1kO2Aacn6sai12bjHF3c/нп
 - Figma (лендінг з практичних): https://www.figma.com/design/21qgQXsHzVqehUcnhd26Uz/melnik-zvit
